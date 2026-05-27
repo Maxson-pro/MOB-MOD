@@ -3,7 +3,9 @@ package com.example;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
@@ -14,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -40,9 +43,9 @@ public class CustomMobEntity extends PathfinderMob implements GeoEntity {
 
         if (!this.level().isClientSide()) {
             soundTimer++;
-            if (soundTimer >= 100) {
+            if (soundTimer >= 200) {
                 this.level().playSound(null, this.getX(), this.getY(), this.getZ(),
-                        ModSounds.MOB_CUSTOM_SOUND, SoundSource.MUSIC, 1.0F, 1.0F);
+                        ModSounds.MOB_CUSTOM_IDLE, SoundSource.NEUTRAL, 1.0F, 1.0F);
                 soundTimer = 0;
             }
 
@@ -84,12 +87,42 @@ public class CustomMobEntity extends PathfinderMob implements GeoEntity {
         }
     }
 
+
+    // Внутри CustomMobEntity.java
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new software.bernie.geckolib.core.animation.AnimationController<>(
+                this, "controller", 0, state -> {
+            // Если моб движется - запускаем анимацию "animation" (имя из твоего .animation.json)
+            if (state.isMoving()) {
+                return state.setAndContinue(software.bernie.geckolib.core.animation.RawAnimation.begin().thenLoop("animation"));
+            }
+            // Если стоит на месте
+            return state.setAndContinue(software.bernie.geckolib.core.animation.RawAnimation.begin().thenLoop("animation"));
+        }
+        ));
     }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
+    }
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        // Звук, когда моб "просто существует"
+        return ModSounds.MOB_CUSTOM_IDLE;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        // Звук, когда моба бьют
+        return ModSounds.MOB_CUSTOM_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        // Звук смерти (по желанию)
+        return ModSounds.MOB_CUSTOM_HURT; // Можно использовать тот же или добавить новый
     }
 }

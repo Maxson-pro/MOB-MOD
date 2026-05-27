@@ -6,9 +6,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
 public class ModSounds {
-
-    // ID твоего кастомного звука
-    public static final SoundEvent MOB_CUSTOM_SOUND = registerSoundEvent("mob_custom_sound");
+    public static final SoundEvent MOB_CUSTOM_IDLE = registerSoundEvent("mob_custom_idle");
+    public static final SoundEvent MOB_CUSTOM_HURT = registerSoundEvent("mob_custom_hurt");
 
     private static SoundEvent registerSoundEvent(String name) {
         ResourceLocation id = new ResourceLocation(ExampleMod.MOD_ID, name);

@@ -17,17 +17,14 @@ public class ExampleMod implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     // 1. Создаём и регистрируем собственную креативную вкладку
-    public static final CreativeModeTab ALEXANDRITE_TAB = Registry.register(
+    public static final CreativeModeTab CUSTOM_MOB_TAB = Registry.register(
             BuiltInRegistries.CREATIVE_MODE_TAB,
-            new ResourceLocation(MOD_ID, "alexandrite_tab"),
+            new ResourceLocation(MOD_ID, "custom_mob_tab"), // Поменяли ID
             FabricItemGroup.builder()
-                    // Имя вкладки для файла перевода (lang)
-                    .title(Component.translatable("itemGroup.modid.alexandrite_tab"))
-                    // Иконка вкладки (в качестве иконки будет наше яйцо призыва)
+                    .title(Component.translatable("itemGroup.modid.custom_mob_tab")) // Новый ключ
                     .icon(() -> new ItemStack(ModItems.CUSTOM_MOB_SPAWN_EGG))
-                    // Добавляем предметы внутрь этой вкладки
                     .displayItems((displayContext, entries) -> {
-                        entries.accept(ModItems.CUSTOM_MOB_SPAWN_EGG); // Наше яйцо
+                        entries.accept(ModItems.CUSTOM_MOB_SPAWN_EGG);
                     })
                     .build()
     );

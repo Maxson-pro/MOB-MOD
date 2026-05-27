@@ -1,0 +1,27 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation": {
+			"loop": true,
+			"animation_length": 2.5417,
+			"bones": {
+				"head": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.5417": {
+							"vector": [0, 15, 0]
+						},
+						"2.5417": {
+							"vector": [-3.1514, 1.4732, 0.6509]
+						}
+					}
+				}
+			}
+		}
+	}
+}

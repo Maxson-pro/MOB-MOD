@@ -9,7 +9,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 
 public class ModEntities {
-    // Регистрация моба с хитбоксом: ширина 1.0 блок, высота 2.0 блока
     public static final EntityType<CustomMobEntity> CUSTOM_MOB = Registry.register(
             BuiltInRegistries.ENTITY_TYPE,
             new ResourceLocation(ExampleMod.MOD_ID, "custom_mob"),
@@ -18,6 +17,6 @@ public class ModEntities {
     );
 
     public static void registerEntities() {
-        ExampleMod.LOGGER.info("Registering ModEntities for " + ExampleMod.MOD_ID);
+        ExampleMod.LOGGER.info("Registering Entities");
     }
 }

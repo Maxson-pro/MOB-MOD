@@ -1,0 +1,12 @@
+{
+  "mob_custom_idle": {
+    "sounds": [
+      { "name": "modid:owl_idle", "stream": false }
+    ]
+  },
+  "mob_custom_hurt": {
+    "sounds": [
+      { "name": "modid:owl_hurt", "stream": false }
+    ]
+  }
+}
