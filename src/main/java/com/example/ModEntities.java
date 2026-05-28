@@ -9,15 +9,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 
 public class ModEntities {
-    // Регистрация моба с хитбоксом: ширина 1.0 блок, высота 2.0 блока
     public static final EntityType<CustomMobEntity> CUSTOM_MOB = Registry.register(
             BuiltInRegistries.ENTITY_TYPE,
             new ResourceLocation(ExampleMod.MOD_ID, "custom_mob"),
             FabricEntityTypeBuilder.create(MobCategory.CREATURE, CustomMobEntity::new)
-                    .dimensions(EntityDimensions.fixed(1.0f, 2.0f)).build()
+                    // Меняй здесь: 0.6f - ширина, 1.0f - высота
+                    .dimensions(EntityDimensions.fixed(0.6f, 1.0f)).build()
     );
 
     public static void registerEntities() {
-        ExampleMod.LOGGER.info("Registering ModEntities for " + ExampleMod.MOD_ID);
+        ExampleMod.LOGGER.info("Registering Entities");
     }
 }

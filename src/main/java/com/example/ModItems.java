@@ -18,4 +18,5 @@ public class ModItems {
     public static void registerItems() {
         ExampleMod.LOGGER.info("Registering ModItems for " + ExampleMod.MOD_ID);
     }
+    
 }
