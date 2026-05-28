@@ -13,7 +13,8 @@ public class ModEntities {
             BuiltInRegistries.ENTITY_TYPE,
             new ResourceLocation(ExampleMod.MOD_ID, "custom_mob"),
             FabricEntityTypeBuilder.create(MobCategory.CREATURE, CustomMobEntity::new)
-                    .dimensions(EntityDimensions.fixed(1.0f, 2.0f)).build()
+                    // Меняй здесь: 0.6f - ширина, 1.0f - высота
+                    .dimensions(EntityDimensions.fixed(0.6f, 1.0f)).build()
     );
 
     public static void registerEntities() {
